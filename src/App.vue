@@ -1,30 +1,40 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app">
+    <div class="container">
+      <h1>TODO List</h1>
+      <nav class="link-list">
+        <router-link to="/" class="link">목록</router-link>
+        <router-link to="/statistics" class="link">통계</router-link>
+      </nav>
+      <router-view />
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.container {
+  width: 500px;
+  height: 600px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.link-list {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  gap: 10px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.link {
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+.link:hover {
+  background-color: rgba(82, 82, 89, 0.68);
+  color: #10b981;
 }
 </style>
