@@ -12,7 +12,7 @@ import TodoItem from "../components/main/TodoItem.vue";
   </div>
   <AddTodoButton />
   <ul>
-    <TodoItem v-for="n in 20" />
+    <TodoItem v-for="n in 2" />
   </ul>
 </template>
 
@@ -27,7 +27,6 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 15px;
-
   list-style: none;
   padding: 10px;
   margin: 0;

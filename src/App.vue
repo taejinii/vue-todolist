@@ -34,16 +34,24 @@ nav {
   justify-content: center;
   gap: 10px;
 }
-.link {
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: 600;
-  font-size: 1.2rem;
+.router-link-exact-active {
   color: #ffffff;
-  text-decoration: inherit;
+  background-color: #262626;
+  border: 2px solid #6366f1;
 }
-.link:hover {
-  background-color: rgba(82, 82, 89, 0.68);
-  color: #10b981;
+.link {
+  padding: 10px 30px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #1c1c1e;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.link:not(.router-link-exact-active) {
+  color: #595959;
+}
+.link:not(.router-link-exact-active):hover {
+  background-color: #262626;
+  color: #a2a2a2;
 }
 </style>

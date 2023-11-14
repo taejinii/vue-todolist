@@ -22,6 +22,7 @@ const selectedCategory = computed(() => store.getters["category"]);
         <li
           class="category-menu-item"
           v-for="category in TODO_CATEGORY_LIST"
+          :key="category"
           @click="onChangeCategory(category)"
         >
           {{ category }}
