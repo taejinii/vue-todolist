@@ -1,12 +1,9 @@
 <script setup>
-import { ref } from "vue";
-
+import { ref, defineProps } from "vue";
 const text = ref("");
 </script>
 
-<template>
-  <input v-model="text" />
-</template>
+<template><input v-model="text" /></template>
 
 <style scoped>
 input {

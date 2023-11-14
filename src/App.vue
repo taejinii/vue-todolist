@@ -15,6 +15,9 @@
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 500px;
   height: 600px;
   border: 1px solid #cccccc;

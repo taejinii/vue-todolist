@@ -40,7 +40,6 @@ const handleInputMode = () => {
   border: none;
   padding: 5px;
   font-size: xx-large;
-  margin-top: 20px;
 }
 .input-mode-button:hover {
   background-color: rgba(82, 82, 89, 0.68);
