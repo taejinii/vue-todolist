@@ -20,9 +20,10 @@ const handleInputMode = () => {
   >
     +
   </button>
+
   <div v-show="isInputModeActive" class="input-mode">
-    <input v-model="todoTitle" />
-    <input v-model="todoDescription" />
+    <input v-model="todoTitle" placeholder="제목을 입력해주세요." />
+    <input v-model="todoDescription" placeholder="설명을 입력해주세요." />
     <div class="input-mode-options">
       <div>
         <VueDatePicker
@@ -82,8 +83,5 @@ input {
 }
 .input-mode-options div :first-child {
   flex: 1;
-}
-.datepicker-wrapper {
-  position: relative;
 }
 </style>

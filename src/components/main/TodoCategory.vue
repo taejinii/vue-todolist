@@ -1,29 +1,33 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { TODO_CATEGORY_LIST } from "../../constant";
+import store from "../../store";
 
 const isCategoryMenuVisible = ref(false);
-const categoryMenu = ref("제목");
 const handleCategoryVisible = () => {
   isCategoryMenuVisible.value = !isCategoryMenuVisible.value;
 };
-const handleCategoryMenu = (menu) => {
-  categoryMenu.value = menu;
+
+const onChangeCategory = (category) => {
+  store.commit("CHANGE_CATEGORY", category);
 };
+const selectedCategory = computed(() => store.getters["category"]);
 </script>
 
 <template>
   <div class="category" @click="handleCategoryVisible">
-    <div>{{ categoryMenu }}</div>
-    <ul class="category-menu" v-show="isCategoryMenuVisible">
-      <li
-        class="category-menu-item"
-        v-for="category in TODO_CATEGORY_LIST"
-        @click="handleCategoryMenu(category)"
-      >
-        {{ category }}
-      </li>
-    </ul>
+    <div>{{ selectedCategory }}</div>
+    <transition name="fade">
+      <ul class="category-menu" v-show="isCategoryMenuVisible">
+        <li
+          class="category-menu-item"
+          v-for="category in TODO_CATEGORY_LIST"
+          @click="onChangeCategory(category)"
+        >
+          {{ category }}
+        </li>
+      </ul>
+    </transition>
   </div>
 </template>
 
@@ -38,6 +42,11 @@ const handleCategoryMenu = (menu) => {
   padding: 10px;
   width: 100px;
   border-radius: 10px;
+  cursor: pointer;
+}
+.category:hover {
+  border-color: #aaaeb7;
+  color: white;
 }
 .category-menu {
   position: absolute;
@@ -50,6 +59,7 @@ const handleCategoryMenu = (menu) => {
   width: 100%;
   list-style: none;
   padding: 0;
+  z-index: 1;
 }
 .category-menu-item {
   padding: 10px;
@@ -66,5 +76,14 @@ const handleCategoryMenu = (menu) => {
 .category-menu-item:hover {
   background-color: #262626;
   color: white;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.2s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  scale: 0.3;
 }
 </style>
