@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from "vue";
-
+import { ko } from "date-fns/locale";
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+const date = ref();
 const isInputModeActive = ref(false);
-const todoTitle = ref(" ");
-const todoDescription = ref(" ");
+const todoTitle = ref("");
+const todoDescription = ref("");
 const handleInputMode = () => {
   isInputModeActive.value = !isInputModeActive.value;
 };
@@ -22,7 +25,15 @@ const handleInputMode = () => {
     <input v-model="todoDescription" />
     <div class="input-mode-options">
       <div>
-        <div class="datepicker">Datepicker</div>
+        <VueDatePicker
+          v-model="date"
+          dark
+          :enable-time-picker="false"
+          :format-locale="ko"
+          placeholder="날짜를 선택해주세요."
+          no-today
+          auto-apply
+        />
         <button>선택</button>
       </div>
       <div>
@@ -65,14 +76,14 @@ input {
   flex-direction: column;
   gap: 10px;
 }
-.datepicker {
-  border: 1px solid #cccccc;
-}
 .input-mode-options div {
   display: flex;
   gap: 20px;
 }
 .input-mode-options div :first-child {
   flex: 1;
+}
+.datepicker-wrapper {
+  position: relative;
 }
 </style>
