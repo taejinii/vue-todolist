@@ -1,15 +1,15 @@
 <script setup></script>
 
 <template>
-  <div id="app">
-    <div class="container">
-      <h1>TODO List</h1>
-      <nav class="link-list">
-        <router-link to="/" class="link">목록</router-link>
-        <router-link to="/statistics" class="link">통계</router-link>
-      </nav>
-      <router-view />
-    </div>
+  <div class="container">
+    <header>
+      <h2>TODO List</h2>
+    </header>
+    <nav>
+      <router-link to="/" class="link">목록</router-link>
+      <router-link to="/statistics" class="link">통계</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 
@@ -17,10 +17,15 @@
 .container {
   width: 500px;
   height: 600px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 10px;
+  padding: 30px;
+  margin: 50px auto;
 }
-.link-list {
+header {
+  text-align: center;
+}
+nav {
   display: flex;
   margin: auto;
   justify-content: center;
@@ -32,6 +37,7 @@
   font-weight: 600;
   font-size: 1.2rem;
   color: #ffffff;
+  text-decoration: inherit;
 }
 .link:hover {
   background-color: rgba(82, 82, 89, 0.68);

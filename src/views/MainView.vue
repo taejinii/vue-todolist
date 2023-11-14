@@ -1,9 +1,22 @@
+<script setup>
+import SearchTodoInput from "../components/main/SearchTodoInput.vue";
+import TodoCategory from "../components/main/TodoCategory.vue";
+import AddTodoButton from "../components/main/AddTodoButton.vue";
+</script>
+
 <template>
-  <div>
-    <h1>홈</h1>
-    <p>홈 페이지 입니다.</p>
+  <div class="search">
+    <TodoCategory />
+    <SearchTodoInput />
   </div>
+  <AddTodoButton />
 </template>
 
-<script setup></script>
-<style scoped></style>
+<style scoped>
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+</style>
