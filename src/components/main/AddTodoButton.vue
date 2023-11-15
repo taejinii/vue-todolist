@@ -37,9 +37,21 @@ const handleAddTodo = (status) => {
   >
     +
   </button>
-  <div v-show="isInputModeActive" class="input-mode">
-    <input v-model="newTodo.title" placeholder="제목을 입력해주세요." />
-    <input v-model="newTodo.description" placeholder="설명을 입력해주세요." />
+  <form
+    @submit.prevent="handleAddTodo(statusValue)"
+    v-show="isInputModeActive"
+    class="input-mode"
+  >
+    <input
+      v-model="newTodo.title"
+      placeholder="제목을 입력해주세요."
+      required
+    />
+    <input
+      v-model="newTodo.description"
+      placeholder="설명을 입력해주세요."
+      required
+    />
     <div class="input-mode-options">
       <div>
         <VueDatePicker
@@ -50,6 +62,7 @@ const handleAddTodo = (status) => {
           placeholder="날짜를 선택해주세요."
           no-today
           auto-apply
+          required=""
         />
 
         <div class="status-option" @click="handleStatusMenuVisible">
@@ -71,11 +84,11 @@ const handleAddTodo = (status) => {
         </div>
       </div>
       <div>
-        <button @click="handleAddTodo(statusValue)">추가</button>
-        <button @click="handleInputMode">취소</button>
+        <button type="submit">추가</button>
+        <button type="button" @click="handleInputMode">취소</button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped>
