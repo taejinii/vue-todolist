@@ -52,7 +52,7 @@ const selectedCategory = computed(() => store.getters["category"]);
 .category-menu {
   position: absolute;
   text-align: center;
-  margin-top: 230px;
+  margin-top: 215px;
   border: 1px solid #2d2d2d;
   border-radius: 5px;
   background-color: #1b1b1b;

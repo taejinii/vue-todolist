@@ -3,6 +3,10 @@ import SearchTodoInput from "../components/main/SearchTodoInput.vue";
 import TodoCategory from "../components/main/TodoCategory.vue";
 import AddTodoButton from "../components/main/AddTodoButton.vue";
 import TodoItem from "../components/main/TodoItem.vue";
+import useTodos from "../hooks/useTodos";
+
+const { todos } = useTodos();
+console.log(todos.value);
 </script>
 
 <template>
@@ -12,7 +16,7 @@ import TodoItem from "../components/main/TodoItem.vue";
   </div>
   <AddTodoButton />
   <ul>
-    <TodoItem v-for="n in 2" />
+    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" />
   </ul>
 </template>
 
