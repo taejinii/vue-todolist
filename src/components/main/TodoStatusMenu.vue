@@ -5,6 +5,11 @@ import { ref } from "vue";
 const isStatusMenuVisible = ref(false);
 const initialStatus = "진행전";
 const selectedStatus = ref(initialStatus);
+const emit = defineEmits(["change-status"]);
+const onChangeStatus = (status) => {
+  selectedStatus.value = status;
+  emit("change-status", status);
+};
 
 const toggleStatusMenuVisible = () => {
   isStatusMenuVisible.value = !isStatusMenuVisible.value;
@@ -20,7 +25,7 @@ const toggleStatusMenuVisible = () => {
       <ul class="status-option-menu" v-show="isStatusMenuVisible">
         <li
           v-for="status in TODO_STATUS_LIST"
-          @click="$emit('change-status', status)"
+          @click="onChangeStatus(status)"
           class="status-option-item"
           :key="status"
         >
