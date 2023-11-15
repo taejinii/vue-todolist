@@ -1,9 +1,14 @@
 <script setup>
-import { ref, defineProps } from "vue";
-const text = ref("");
+defineProps(["modelValue"]);
+defineEmits(["update:modelValue"]);
 </script>
 
-<template><input v-model="text" /></template>
+<template>
+  <input
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
 
 <style scoped>
 input {

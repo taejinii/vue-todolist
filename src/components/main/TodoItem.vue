@@ -1,7 +1,9 @@
 <script setup>
 import { defineProps } from "vue";
+import { TODO_STATUS_MAPPINGS } from "../../constant";
 const { todo } = defineProps(["todo"]);
 const { title, description, date, status } = todo;
+const statusToEnglish = TODO_STATUS_MAPPINGS[status];
 </script>
 
 <template>
@@ -12,7 +14,8 @@ const { title, description, date, status } = todo;
     </div>
     <div class="todo-status-section">
       <span>{{ date }} </span>
-      <span class="todo-status" :class="status.value">{{ status.name }}</span>
+
+      <span class="todo-status" :class="statusToEnglish">{{ status }}</span>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ const localTodos = JSON.parse(localStorage.getItem("todos"));
 export default createStore({
   state: {
     todos: localTodos ?? [],
-    category: "제목",
+    category: { name: "제목", value: "title" },
   },
   mutations: {
     ADD_TODO_ITEM(state, payload) {

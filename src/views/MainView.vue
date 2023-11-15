@@ -1,22 +1,30 @@
 <script setup>
+import { computed, ref } from "vue";
 import SearchTodoInput from "../components/main/SearchTodoInput.vue";
 import TodoCategory from "../components/main/TodoCategory.vue";
 import AddTodoButton from "../components/main/AddTodoButton.vue";
 import TodoItem from "../components/main/TodoItem.vue";
 import useTodos from "../hooks/useTodos";
+import store from "../store";
 
 const { todos } = useTodos();
-console.log(todos.value);
+const searchText = ref("");
+const category = computed(() => store.state["category"]);
+const filteredTodos = computed(() =>
+  todos.value.filter((todo) =>
+    todo[category.value.value].includes(searchText.value)
+  )
+);
 </script>
 
 <template>
   <div class="search">
     <TodoCategory />
-    <SearchTodoInput />
+    <SearchTodoInput v-model="searchText" />
   </div>
   <AddTodoButton />
   <ul>
-    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" />
+    <TodoItem v-for="todo in filteredTodos" :key="todo.id" :todo="todo" />
   </ul>
 </template>
 

@@ -1,53 +1,55 @@
 <script setup>
 import { ref } from "vue";
 import { ko } from "date-fns/locale";
-import { TODO_STATUS_LIST } from "../../constant";
+import { TODO_STATUS_LIST, TODO_STATUS_MAPPINGS } from "../../constant";
 import useTodos from "../../hooks/useTodos";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
 const isInputModeActive = ref(false);
 const isStatusMenuVisible = ref(false);
-const initialStatus = { name: "진행전", value: "pending" };
-const statusValue = ref(initialStatus);
+const initialStatus = "진행전";
+const selectedStatus = ref(initialStatus);
 const { addTodo, newTodo } = useTodos();
 
-const handleInputMode = () => {
+const toggleInputMode = () => {
   isInputModeActive.value = !isInputModeActive.value;
 };
-const handleStatusMenuVisible = () => {
+const toggleStatusMenuVisible = () => {
   isStatusMenuVisible.value = !isStatusMenuVisible.value;
 };
 
 const onChangeStatus = (status) => {
-  statusValue.value = status;
+  selectedStatus.value = status;
 };
 const handleAddTodo = (status) => {
   addTodo(status);
-  statusValue.value = initialStatus;
+  selectedStatus.value = initialStatus;
   isInputModeActive.value = false;
 };
 </script>
 
 <template>
   <button
-    @click="handleInputMode"
+    @click="toggleInputMode"
     v-show="!isInputModeActive"
     class="input-mode-button"
   >
     +
   </button>
   <form
-    @submit.prevent="handleAddTodo(statusValue)"
+    @submit.prevent="handleAddTodo(selectedStatus)"
     v-show="isInputModeActive"
     class="input-mode"
   >
     <input
+      class="todo-input"
       v-model="newTodo.title"
       placeholder="제목을 입력해주세요."
       required
     />
     <input
+      class="todo-input"
       v-model="newTodo.description"
       placeholder="설명을 입력해주세요."
       required
@@ -65,9 +67,12 @@ const handleAddTodo = (status) => {
           required=""
         />
 
-        <div class="status-option" @click="handleStatusMenuVisible">
-          <div class="selcted-status" :class="statusValue.value">
-            {{ statusValue.name }}
+        <div class="status-option" @click="toggleStatusMenuVisible">
+          <div
+            class="selcted-status"
+            :class="TODO_STATUS_MAPPINGS[selectedStatus]"
+          >
+            {{ selectedStatus }}
           </div>
           <transition name="fade">
             <ul class="status-option-menu" v-show="isStatusMenuVisible">
@@ -75,9 +80,9 @@ const handleAddTodo = (status) => {
                 v-for="status in TODO_STATUS_LIST"
                 @click="onChangeStatus(status)"
                 class="status-option-item"
-                :key="status.name"
+                :key="status"
               >
-                <div :class="status.value">{{ status.name }}</div>
+                <div :class="TODO_STATUS_MAPPINGS[status]">{{ status }}</div>
               </li>
             </ul>
           </transition>
@@ -85,7 +90,7 @@ const handleAddTodo = (status) => {
       </div>
       <div>
         <button type="submit">추가</button>
-        <button type="button" @click="handleInputMode">취소</button>
+        <button type="button" @click="toggleInputMode">취소</button>
       </div>
     </div>
   </form>
@@ -111,12 +116,14 @@ const handleAddTodo = (status) => {
   justify-content: center;
   gap: 20px;
   padding: 15px;
-  margin-top: 20px;
 }
-input {
-  border-radius: 10px;
+.todo-input {
+  border-radius: 4px;
   border: none;
   padding: 10px;
+  &:focus {
+    outline: none;
+  }
 }
 .input-mode-options {
   display: flex;
@@ -135,8 +142,6 @@ input {
   border: 1px solid #2d2d2d;
   padding: 5px 20px;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -150,21 +155,20 @@ input {
 }
 .status-option-menu {
   position: absolute;
-  text-align: center;
   margin-top: 170px;
   border: 1px solid #2d2d2d;
   border-radius: 5px;
   background-color: #1b1b1b;
   color: #a3a3a3;
   width: 100%;
-  list-style: none;
-  padding: 0;
+
   z-index: 1;
 }
 .status-option-item {
   padding: 10px;
   cursor: pointer;
 }
+
 .status-option-item:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;

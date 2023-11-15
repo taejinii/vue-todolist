@@ -1,6 +1,13 @@
-export const TODO_CATEGORY_LIST = ["제목", "설명", "날짜", "상태"];
-export const TODO_STATUS_LIST = [
-  { name: "진행전", value: "pending" },
-  { name: "진행중", value: "processing" },
-  { name: "완료", value: "completed" },
+export const TODO_CATEGORY_LIST = [
+  { name: "제목", value: "title" },
+  { name: "설명", value: "description" },
+  { name: "날짜", value: "date" },
+  { name: "상태", value: "status" },
 ];
+
+export const TODO_STATUS_LIST = ["진행전", "진행중", "완료"];
+export const TODO_STATUS_MAPPINGS = {
+  진행전: "pending",
+  진행중: "processing",
+  완료: "completed",
+};

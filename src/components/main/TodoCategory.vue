@@ -7,7 +7,6 @@ const isCategoryMenuVisible = ref(false);
 const handleCategoryVisible = () => {
   isCategoryMenuVisible.value = !isCategoryMenuVisible.value;
 };
-
 const onChangeCategory = (category) => {
   store.commit("CHANGE_CATEGORY", category);
 };
@@ -16,7 +15,7 @@ const selectedCategory = computed(() => store.getters["category"]);
 
 <template>
   <div class="category" @click="handleCategoryVisible">
-    <div>{{ selectedCategory }}</div>
+    <div>{{ selectedCategory.name }}</div>
     <transition name="fade">
       <ul class="category-menu" v-show="isCategoryMenuVisible">
         <li
@@ -25,7 +24,7 @@ const selectedCategory = computed(() => store.getters["category"]);
           :key="category"
           @click="onChangeCategory(category)"
         >
-          {{ category }}
+          {{ category.name }}
         </li>
       </ul>
     </transition>
