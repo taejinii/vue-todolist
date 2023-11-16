@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 const initialTodo = {
   title: "",
   description: "",
-  // status: { name: "진행전", value: "pending" },
   status: "진행전",
   date: "",
 };
@@ -30,7 +29,6 @@ export default function useTodos() {
     newTodo.value = {
       title: "",
       description: "",
-      // status: { name: "진행전", value: "pending" },
       status: "진행전",
       date: "",
     };

@@ -714,6 +714,11 @@ vue-router@4:
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
+vue3-apexcharts@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/vue3-apexcharts/-/vue3-apexcharts-1.4.4.tgz#3fd5f97a79dd323d37c996a44617bb2ec9978152"
+  integrity sha512-TH89uZrxGjaDvkaYAISvj8+k6Bf1rUKFillc8oJirs5XZEPiwM1ELKZQ786wz0rfPqkSHHny2lqqUCK7Rw+LcQ==
+
 vue@^3.3.4:
   version "3.3.8"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.3.8.tgz#532ff071af24f6a69e5ecc53a66858a9ee874ffc"
