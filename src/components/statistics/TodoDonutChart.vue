@@ -27,7 +27,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="donut-box">
+  <div class="donut-box" v-if="todos.length !== 0">
     <div class="donut-chart"></div>
     <ul class="todo-count-list">
       <li

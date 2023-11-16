@@ -13,5 +13,6 @@ import TodoDonutChart from "../components/statistics/TodoDonutChart.vue";
 .chat-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 </style>

@@ -37,7 +37,9 @@ export const CHART_OPTIONS = {
       fontSize: "14px",
     },
   },
+
   yaxis: {
     tickAmount: 1,
+    y: 1,
   },
 };
