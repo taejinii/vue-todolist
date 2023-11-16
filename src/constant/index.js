@@ -11,3 +11,33 @@ export const TODO_STATUS_MAPPINGS = {
   진행중: "processing",
   완료: "completed",
 };
+
+export const CHART_OPTIONS = {
+  stroke: {
+    curve: "smooth",
+    width: 3,
+  },
+  chart: {
+    type: "line",
+    zoom: {
+      enabled: false,
+    },
+    toolbar: {
+      show: false,
+    },
+  },
+  markers: {
+    size: 4,
+    hover: {
+      size: 10,
+    },
+  },
+  tooltip: {
+    style: {
+      fontSize: "14px",
+    },
+  },
+  yaxis: {
+    tickAmount: 1,
+  },
+};

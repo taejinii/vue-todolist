@@ -16,6 +16,18 @@ export default function useTodoStatistics(todos) {
       ).length
     );
   }
+  const calculateTodoCount = (status) => {
+    return todos.value.filter((todo) => todo.status === status).length;
+  };
+  const pendingTodoCount = calculateTodoCount("진행전");
+  const processingTodoCount = calculateTodoCount("진행중");
+  const completedTodoCount = calculateTodoCount("완료");
 
-  return { latestDays, todoCount };
+  return {
+    latestDays,
+    todoCount,
+    pendingTodoCount,
+    processingTodoCount,
+    completedTodoCount,
+  };
 }
