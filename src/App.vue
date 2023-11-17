@@ -20,7 +20,7 @@
   gap: 10px;
   width: 500px;
   height: 600px;
-  border: 1px solid #cccccc;
+  border: 1px solid #2d2d2d;
   border-radius: 10px;
   padding: 30px;
   margin: 50px auto;

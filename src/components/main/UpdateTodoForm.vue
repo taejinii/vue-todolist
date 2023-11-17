@@ -53,6 +53,7 @@ const onSubmit = () => {
           no-today
           auto-apply
           format="yyyy.MM.dd"
+          teleport="body"
         />
         <button type="submit">수정</button>
       </div>

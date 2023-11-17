@@ -7,6 +7,7 @@ defineEmits(["update:modelValue"]);
   <input
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
+    placeholder="검색어를 입력해주세요."
   />
 </template>
 
@@ -14,7 +15,7 @@ defineEmits(["update:modelValue"]);
 input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 10px;
 }
 </style>
