@@ -28,6 +28,10 @@ const formattedDate = dayjs(date).format("YYYY.MM.DD");
   padding: 15px;
   border-radius: 10px;
   background-color: #262626;
+  cursor: pointer;
+  &:hover {
+    background-color: #3d3d3d;
+  }
 }
 .todo-text-section,
 .todo-status-section {

@@ -26,6 +26,7 @@ const onSubmit = (status) => {
     @click="toggleTodoForm"
     v-show="!isInputModeVisible"
     class="input-mode-button"
+    type="button"
   >
     +
   </button>
@@ -76,10 +77,11 @@ const onSubmit = (status) => {
   border: none;
   padding: 5px;
   font-size: xx-large;
-}
-.input-mode-button:hover {
-  background-color: rgba(82, 82, 89, 0.68);
-  color: #10b981;
+  background-color: #262626;
+  cursor: pointer;
+  &:hover {
+    background-color: #3d3d3d;
+  }
 }
 
 .input-mode {
