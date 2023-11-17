@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { TODO_CATEGORY_LIST } from "../../constant";
 import store from "../../store";
+import CaretDownIcon from "../../../public/caret-bottom.svg";
 
 const isCategoryMenuVisible = ref(false);
 const handleCategoryVisible = () => {
@@ -15,7 +16,9 @@ const selectedCategory = computed(() => store.getters["category"]);
 
 <template>
   <div class="category" @click="handleCategoryVisible">
-    <div>{{ selectedCategory.name }}</div>
+    <div class="selected-category">
+      {{ selectedCategory.name }}<CaretDownIcon />
+    </div>
     <transition name="fade">
       <ul class="category-menu" v-show="isCategoryMenuVisible">
         <li
@@ -43,10 +46,15 @@ const selectedCategory = computed(() => store.getters["category"]);
   width: 100px;
   border-radius: 10px;
   cursor: pointer;
+  &:hover {
+    border-color: #aaaeb7;
+    color: white;
+  }
 }
-.category:hover {
-  border-color: #aaaeb7;
-  color: white;
+
+.selected-category {
+  display: flex;
+  align-items: center;
 }
 .category-menu {
   position: absolute;
