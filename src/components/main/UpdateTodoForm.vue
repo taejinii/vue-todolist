@@ -59,7 +59,7 @@ const onSubmit = () => {
       <div class="button-box">
         <TodoStatusMenu
           @change-status="onChangeStatus"
-          :todoStatus="updateStatus"
+          :todo-status="updateStatus"
         />
         <button type="button" @click="emit('closeForm')">취소</button>
       </div>
