@@ -10,7 +10,6 @@ const { todo } = defineProps(["todo"]);
 const emit = defineEmits(["closeForm"]);
 const { updateTodo } = useTodos();
 const { id, title, description, date, status } = todo;
-
 const updateTitle = ref(title);
 const updateDescription = ref(description);
 const updateDate = ref(date);
@@ -58,7 +57,10 @@ const onSubmit = () => {
         <button type="submit">수정</button>
       </div>
       <div class="button-box">
-        <TodoStatusMenu @change-status="onChangeStatus" />
+        <TodoStatusMenu
+          @change-status="onChangeStatus"
+          :todoStatus="updateStatus"
+        />
         <button type="button" @click="emit('closeForm')">취소</button>
       </div>
     </div>

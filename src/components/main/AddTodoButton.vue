@@ -63,7 +63,10 @@ const onSubmit = (status) => {
         <button type="submit">추가</button>
       </div>
       <div class="button-box">
-        <TodoStatusMenu @change-status="onChangeTodoStatus" />
+        <TodoStatusMenu
+          @change-status="onChangeTodoStatus"
+          :todo-status="selectedStatus"
+        />
         <button type="button" @click="toggleTodoForm">취소</button>
       </div>
     </div>

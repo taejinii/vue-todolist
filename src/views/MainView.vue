@@ -11,7 +11,6 @@ import UpdateTodoForm from "../components/main/UpdateTodoForm.vue";
 const { todos } = useTodos();
 const searchText = ref("");
 const category = computed(() => store.state["category"]);
-console.log(category.value.value);
 
 const filteredTodos = computed(() =>
   todos.value.filter((todo) =>

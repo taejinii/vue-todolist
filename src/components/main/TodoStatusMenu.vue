@@ -2,9 +2,11 @@
 import { TODO_STATUS_LIST, TODO_STATUS_MAPPINGS } from "../../constant";
 import { ref } from "vue";
 
+defineProps(["todoStatus"]);
+const emit = defineEmits(["change-status"]);
 const isStatusMenuVisible = ref(false);
 const selectedStatus = ref("진행전");
-const emit = defineEmits(["change-status"]);
+
 const onChangeStatus = (status) => {
   selectedStatus.value = status;
   emit("change-status", status);
@@ -17,8 +19,8 @@ const toggleStatusMenuVisible = () => {
 
 <template>
   <div class="status-option" @click="toggleStatusMenuVisible">
-    <div class="selcted-status" :class="TODO_STATUS_MAPPINGS[selectedStatus]">
-      {{ selectedStatus }}
+    <div class="selcted-status" :class="TODO_STATUS_MAPPINGS[todoStatus]">
+      {{ todoStatus }}
     </div>
     <transition name="fade">
       <ul class="status-option-menu" v-show="isStatusMenuVisible">
@@ -44,10 +46,10 @@ const toggleStatusMenuVisible = () => {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-.status-option:hover {
-  border-color: #aaaeb7;
-  color: white;
+  &:hover {
+    border-color: #aaaeb7;
+    color: white;
+  }
 }
 .selcted-status {
   align-items: center;
@@ -60,7 +62,6 @@ const toggleStatusMenuVisible = () => {
   background-color: #1b1b1b;
   color: #a3a3a3;
   width: 100%;
-
   z-index: 1;
 }
 .status-option-item {
