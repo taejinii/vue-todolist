@@ -6,30 +6,50 @@ import AddTodoButton from "../components/main/AddTodoButton.vue";
 import TodoItem from "../components/main/TodoItem.vue";
 import useTodos from "../hooks/useTodos";
 import store from "../store";
+import UpdateTodoForm from "../components/main/UpdateTodoForm.vue";
 
 const { todos } = useTodos();
 const searchText = ref("");
 const category = computed(() => store.state["category"]);
+console.log(category.value.value);
+
 const filteredTodos = computed(() =>
   todos.value.filter((todo) =>
     todo[category.value.value].includes(searchText.value)
   )
 );
+const editingTodo = ref(null);
+const selectEditTodo = (todo) => {
+  editingTodo.value = todo;
+};
+const closeUpdateTodoForm = () => {
+  editingTodo.value = null;
+};
 </script>
 
 <template>
-  <div class="search">
+  <div class="search-box">
     <TodoCategory />
     <SearchTodoInput v-model="searchText" />
   </div>
   <AddTodoButton />
   <ul>
-    <TodoItem v-for="todo in filteredTodos" :key="todo.id" :todo="todo" />
+    <li v-for="todo in filteredTodos">
+      <TodoItem
+        v-if="editingTodo !== todo"
+        :key="todo.id"
+        :todo="todo"
+        @click="selectEditTodo(todo)"
+      />
+      <div v-else>
+        <UpdateTodoForm :todo="todo" @closeForm="closeUpdateTodoForm" />
+      </div>
+    </li>
   </ul>
 </template>
 
 <style scoped>
-.search {
+.search-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,9 +59,6 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  list-style: none;
-  padding: 10px;
-  margin: 0;
   overflow-y: auto;
   flex: 1;
 }

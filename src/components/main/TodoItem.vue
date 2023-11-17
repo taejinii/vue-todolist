@@ -1,9 +1,10 @@
 <script setup>
-import { defineProps } from "vue";
+import dayjs from "dayjs";
 import { TODO_STATUS_MAPPINGS } from "../../constant";
 const { todo } = defineProps(["todo"]);
 const { title, description, date, status } = todo;
 const statusToEnglish = TODO_STATUS_MAPPINGS[status];
+const formattedDate = dayjs(date).format("YYYY.MM.DD");
 </script>
 
 <template>
@@ -13,8 +14,7 @@ const statusToEnglish = TODO_STATUS_MAPPINGS[status];
       <span class="todo-text">{{ description }}</span>
     </div>
     <div class="todo-status-section">
-      <span>{{ date }} </span>
-
+      <span>{{ formattedDate }} </span>
       <span class="todo-status" :class="statusToEnglish">{{ status }}</span>
     </div>
   </div>

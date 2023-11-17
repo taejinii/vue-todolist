@@ -11,6 +11,11 @@ export default createStore({
       state.todos = [...state.todos, payload];
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
+    UPDATE_TODO_ITEM(state, payload) {
+      const index = state.todos.findIndex((todo) => todo.id === payload.id);
+      state.todos[index] = payload;
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
     CHANGE_CATEGORY(state, category) {
       state.category = category;
     },

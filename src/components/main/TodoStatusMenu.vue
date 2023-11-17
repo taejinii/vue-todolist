@@ -3,8 +3,7 @@ import { TODO_STATUS_LIST, TODO_STATUS_MAPPINGS } from "../../constant";
 import { ref } from "vue";
 
 const isStatusMenuVisible = ref(false);
-const initialStatus = "진행전";
-const selectedStatus = ref(initialStatus);
+const selectedStatus = ref("진행전");
 const emit = defineEmits(["change-status"]);
 const onChangeStatus = (status) => {
   selectedStatus.value = status;
