@@ -6,24 +6,29 @@ import VueDatePicker from "@vuepic/vue-datepicker";
 import TodoStatusMenu from "./TodoStatusMenu.vue";
 
 const isInputModeVisible = ref(false);
-const selectedStatus = ref("진행전");
+const selectedStatus = ref(null);
 const { addTodo, newTodo } = useTodos();
 
-const toggleTodoForm = () => {
+const toggleInputMode = () => {
   isInputModeVisible.value = !isInputModeVisible.value;
 };
 const onChangeTodoStatus = (status) => {
   selectedStatus.value = status;
 };
 const onSubmit = (status) => {
+  if (!status) {
+    alert("상태를 선택해주세요.");
+    return;
+  }
   addTodo(status);
   isInputModeVisible.value = false;
+  selectedStatus.value = null;
 };
 </script>
 
 <template>
   <button
-    @click="toggleTodoForm"
+    @click="toggleInputMode"
     v-show="!isInputModeVisible"
     class="input-mode-button"
     type="button"
@@ -67,7 +72,7 @@ const onSubmit = (status) => {
           @change-status="onChangeTodoStatus"
           :todo-status="selectedStatus"
         />
-        <button type="button" @click="toggleTodoForm">취소</button>
+        <button type="button" @click="toggleInputMode">취소</button>
       </div>
     </div>
   </form>

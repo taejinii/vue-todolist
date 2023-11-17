@@ -1,17 +1,15 @@
 <script setup>
 import { TODO_STATUS_LIST, TODO_STATUS_MAPPINGS } from "../../constant";
 import { ref } from "vue";
+import CaretDownIcon from "../../../public/caret-bottom.svg";
 
 defineProps(["todoStatus"]);
 const emit = defineEmits(["change-status"]);
 const isStatusMenuVisible = ref(false);
-const selectedStatus = ref("진행전");
 
 const onChangeStatus = (status) => {
-  selectedStatus.value = status;
   emit("change-status", status);
 };
-
 const toggleStatusMenuVisible = () => {
   isStatusMenuVisible.value = !isStatusMenuVisible.value;
 };
@@ -20,7 +18,10 @@ const toggleStatusMenuVisible = () => {
 <template>
   <div class="status-option" @click="toggleStatusMenuVisible">
     <div class="selcted-status" :class="TODO_STATUS_MAPPINGS[todoStatus]">
-      {{ todoStatus }}
+      <span v-if="todoStatus">{{ todoStatus }}</span>
+      <span v-else :style="{ display: 'flex', alignItems: 'center' }">
+        선택 <CaretDownIcon />
+      </span>
     </div>
     <transition name="fade">
       <ul class="status-option-menu" v-show="isStatusMenuVisible">
@@ -51,9 +52,7 @@ const toggleStatusMenuVisible = () => {
     color: white;
   }
 }
-.selcted-status {
-  align-items: center;
-}
+
 .status-option-menu {
   position: absolute;
   margin-top: 170px;
