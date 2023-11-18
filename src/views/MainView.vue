@@ -8,10 +8,12 @@ import useTodos from "../hooks/useTodos";
 import store from "../store";
 import UpdateTodoForm from "../components/main/UpdateTodoForm.vue";
 
+// 전체 TODO 목록을 가져옵니다.
 const { todos } = useTodos();
 const searchText = ref("");
 const category = computed(() => store.state["category"]);
 
+// 검색어와 카테고리에 따라 TODO를 필터링합니다.
 const filteredTodos = computed(() =>
   todos.value.filter((todo) =>
     todo[category.value.value].includes(searchText.value)

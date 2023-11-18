@@ -15,7 +15,8 @@ const toggleInputMode = () => {
 const onChangeTodoStatus = (status) => {
   selectedStatus.value = status;
 };
-const onSubmit = (status) => {
+// TODO를 추가합니다. 할일 상태를 선택하지 않는다면 경고창을 띄웁니다.
+const handleAddTodo = (status) => {
   if (!status) {
     alert("상태를 선택해주세요.");
     return;
@@ -36,7 +37,7 @@ const onSubmit = (status) => {
     +
   </button>
   <form
-    @submit.prevent="onSubmit(selectedStatus)"
+    @submit.prevent="handleAddTodo(selectedStatus)"
     v-show="isInputModeVisible"
     class="input-mode"
   >

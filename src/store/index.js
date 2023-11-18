@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 const localTodos = JSON.parse(localStorage.getItem("todos"));
 export default createStore({
   state: {
+    // 로컬스토리지에 저장된 todos가 있으면 가져오고 없으면 빈 배열을 할당합니다.
     todos: localTodos ?? [],
     category: { name: "제목", value: "title" },
   },

@@ -21,7 +21,8 @@ const onChangeStatus = (selectedStatus) => {
 const onDeleteTodo = (todoId) => {
   deleteTodo(todoId);
 };
-const onUpdateTodo = () => {
+// 수정 버튼 클릭시 수정된 TODO를 저장합니다.
+const handleUpdateTodo = () => {
   updateTodo({
     id,
     title: updateTitle.value,
@@ -32,7 +33,7 @@ const onUpdateTodo = () => {
 };
 </script>
 <template>
-  <form @submit.prevent="onUpdateTodo" class="input-mode">
+  <form @submit.prevent="handleUpdateTodo" class="input-mode">
     <input
       class="todo-input"
       v-model="updateTitle"

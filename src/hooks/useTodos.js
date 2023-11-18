@@ -10,11 +10,15 @@ const initialTodo = {
 };
 export default function useTodos() {
   const newTodo = ref(initialTodo);
+
+  // computed를 사용하여 store의 todos를 가져옵니다.
   const todos = computed(() => store.getters["todos"]);
 
   const addTodo = (status) => {
     if (!newTodo.value) return;
     const { title, description, date } = newTodo.value;
+
+    // TODO의 ID를 생성합니다. (마지막 TODO의 ID + 1)
     const id = todos.value.length
       ? todos.value[todos.value.length - 1].id + 1
       : 0;
