@@ -26,14 +26,6 @@ export default createStore({
       state.category = category;
     },
   },
-  actions: {
-    ADD_TODO({ commit }, payload) {
-      commit("ADD_TODO_ITEM", payload);
-    },
-    SET_CATEGORY({ commit }, payload) {
-      commit("CHANGE_CATEGORY", payload);
-    },
-  },
   getters: {
     todos: (state) => state.todos,
     category: (state) => state.category,

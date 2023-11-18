@@ -29,7 +29,7 @@ export default function useTodos() {
       status,
       date: dayjs(date).format("YYYY.MM.DD"),
     };
-    store.dispatch("ADD_TODO", payload);
+    store.commit("ADD_TODO_ITEM", payload);
     newTodo.value = {
       title: "",
       description: "",
