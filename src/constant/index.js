@@ -37,9 +37,18 @@ export const CHART_OPTIONS = {
       fontSize: "14px",
     },
   },
-
+  xaxis: {
+    labels: {
+      style: {
+        colors: "#fff",
+      },
+    },
+  },
   yaxis: {
-    tickAmount: 1,
-    y: 1,
+    labels: {
+      style: {
+        colors: "#fff",
+      },
+    },
   },
 };
