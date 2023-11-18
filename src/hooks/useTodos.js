@@ -1,5 +1,6 @@
 import store from "../store";
 import { ref, computed } from "vue";
+import dayjs from "dayjs";
 
 const initialTodo = {
   title: "",
@@ -22,7 +23,7 @@ export default function useTodos() {
       title,
       description,
       status,
-      date,
+      date: dayjs(date).format("YYYY.MM.DD"),
     };
     store.dispatch("ADD_TODO", payload);
     newTodo.value = {
