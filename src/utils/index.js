@@ -5,6 +5,7 @@ export default function generateDonutChart(calculatedTodoCount, elementId) {
   const svgHeight = 150;
   const radius = Math.min(svgWidth, svgHeight) / 2;
   const colorRange = ["#ef4444", "#eab308", "#069668"];
+  const isTodoCountZero = calculatedTodoCount.every((todo) => todo.count === 0);
 
   const colorDomain = calculatedTodoCount.map((todo) => todo.status_value);
   const color = d3.scaleOrdinal(colorRange).domain(colorDomain);
@@ -19,7 +20,9 @@ export default function generateDonutChart(calculatedTodoCount, elementId) {
     .append("g")
     .attr("transform", "translate(" + svgWidth / 2 + "," + svgHeight / 2 + ")");
 
-  const pie = d3.pie().value((d) => d.count);
+  const pie = d3.pie().value((d) => {
+    return isTodoCountZero ? 1 : d.count;
+  });
   const arc = d3
     .arc()
     .innerRadius(radius * 0.67)
@@ -34,5 +37,14 @@ export default function generateDonutChart(calculatedTodoCount, elementId) {
   part
     .append("path")
     .attr("d", arc)
-    .attr("fill", (_, i) => color(i));
+    .attr("fill", (_, i) => {
+      return isTodoCountZero ? "white" : color(i);
+    });
+  if (isTodoCountZero) {
+    g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("dy", "0.35em")
+      .text("TODO 없음")
+      .style("fill", "white");
+  }
 }
