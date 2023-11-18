@@ -16,6 +16,11 @@ export default createStore({
       state.todos[index] = payload;
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
+    DELETE_TODO_ITEM(state, payload) {
+      const index = state.todos.findIndex((todo) => todo.id === payload);
+      state.todos.splice(index, 1);
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    },
     CHANGE_CATEGORY(state, category) {
       state.category = category;
     },

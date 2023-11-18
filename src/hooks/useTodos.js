@@ -35,10 +35,14 @@ export default function useTodos() {
   const updateTodo = (todo) => {
     store.commit("UPDATE_TODO_ITEM", todo);
   };
+  const deleteTodo = (todoId) => {
+    store.commit("DELETE_TODO_ITEM", todoId);
+  };
   return {
     newTodo,
     todos,
     addTodo,
     updateTodo,
+    deleteTodo,
   };
 }

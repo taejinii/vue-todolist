@@ -8,16 +8,20 @@ import TodoStatusMenu from "./TodoStatusMenu.vue";
 
 const { todo } = defineProps(["todo"]);
 const emit = defineEmits(["closeForm"]);
-const { updateTodo } = useTodos();
+const { updateTodo, deleteTodo } = useTodos();
 const { id, title, description, date, status } = todo;
 const updateTitle = ref(title);
 const updateDescription = ref(description);
 const updateDate = ref(date);
 const updateStatus = ref(status);
+
 const onChangeStatus = (selectedStatus) => {
   updateStatus.value = selectedStatus;
 };
-const onSubmit = () => {
+const onDeleteTodo = (todoId) => {
+  deleteTodo(todoId);
+};
+const onUpdateTodo = () => {
   updateTodo({
     id,
     title: updateTitle.value,
@@ -28,7 +32,7 @@ const onSubmit = () => {
 };
 </script>
 <template>
-  <form @submit.prevent="onSubmit" class="input-mode">
+  <form @submit.prevent="onUpdateTodo" class="input-mode">
     <input
       class="todo-input"
       v-model="updateTitle"
@@ -42,7 +46,7 @@ const onSubmit = () => {
       required
     />
     <div class="input-mode-options">
-      <div class="input-box">
+      <div class="input-box-left">
         <VueDatePicker
           v-model="updateDate"
           dark
@@ -54,14 +58,17 @@ const onSubmit = () => {
           format="yyyy.MM.dd"
           teleport="body"
         />
-        <button type="submit">수정</button>
+        <div class="">
+          <button type="submit">수정</button>
+          <button type="button" @click="onDeleteTodo(id)">삭제</button>
+        </div>
       </div>
-      <div class="button-box">
+      <div class="input-box-right">
         <TodoStatusMenu
           @change-status="onChangeStatus"
           :todo-status="updateStatus"
         />
-        <button type="button" @click="emit('closeForm')">취소</button>
+        <button @click="emit('closeForm')">취소</button>
       </div>
     </div>
   </form>
@@ -71,7 +78,7 @@ const onSubmit = () => {
 .input-mode {
   display: flex;
   flex-direction: column;
-  border: 1px solid #cccccc;
+  border: 1px solid #262626;
   border-radius: 10px;
   justify-content: center;
   gap: 20px;
@@ -88,28 +95,26 @@ const onSubmit = () => {
 .input-mode-options {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
 }
 .input-mode-options div {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 .input-mode-options div :first-child {
   flex: 1;
 }
-.input-box {
+.input-box-left {
   display: flex;
   flex-direction: column;
-  width: 100%;
   flex: 4;
 }
-.button-box {
+.input-box-right {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-.button-box button,
-.input-box button {
+button {
   padding: 5px;
 }
 </style>

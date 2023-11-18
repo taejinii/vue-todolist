@@ -95,7 +95,7 @@ const onSubmit = (status) => {
 .input-mode {
   display: flex;
   flex-direction: column;
-  border: 1px solid #cccccc;
+  border: 1px solid #262626;
   border-radius: 10px;
   justify-content: center;
   gap: 20px;
