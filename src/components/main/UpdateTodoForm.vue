@@ -5,6 +5,7 @@ import useTodos from "../../hooks/useTodos";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import TodoStatusMenu from "./TodoStatusMenu.vue";
+import CustomInput from "./CustomInput.vue";
 
 const { todo } = defineProps(["todo"]);
 const emit = defineEmits(["closeForm"]);
@@ -34,17 +35,10 @@ const handleUpdateTodo = () => {
 </script>
 <template>
   <form @submit.prevent="handleUpdateTodo" class="input-mode">
-    <input
-      class="todo-input"
-      v-model="updateTitle"
-      placeholder="제목을 입력해주세요."
-      required
-    />
-    <input
-      class="todo-input"
+    <CustomInput v-model="updateTitle" placeholder="제목을 입력해주세요." />
+    <CustomInput
       v-model="updateDescription"
       placeholder="설명을 입력해주세요."
-      required
     />
     <div class="input-mode-options">
       <div class="input-box-left">
@@ -84,14 +78,6 @@ const handleUpdateTodo = () => {
   justify-content: center;
   gap: 20px;
   padding: 15px;
-}
-.todo-input {
-  border-radius: 4px;
-  border: none;
-  padding: 10px;
-  &:focus {
-    outline: none;
-  }
 }
 .input-mode-options {
   display: flex;

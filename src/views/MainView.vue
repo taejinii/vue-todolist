@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import SearchTodoInput from "../components/main/SearchTodoInput.vue";
+import CustomInput from "../components/main/CustomInput.vue";
 import TodoCategory from "../components/main/TodoCategory.vue";
 import AddTodoButton from "../components/main/AddTodoButton.vue";
 import TodoItem from "../components/main/TodoItem.vue";
@@ -10,14 +11,12 @@ import UpdateTodoForm from "../components/main/UpdateTodoForm.vue";
 
 // 전체 TODO 목록을 가져옵니다.
 const { todos } = useTodos();
-const searchText = ref("");
+const text = ref("");
 const category = computed(() => store.state["category"]);
 
 // 검색어와 카테고리에 따라 TODO를 필터링합니다.
 const filteredTodos = computed(() =>
-  todos.value.filter((todo) =>
-    todo[category.value.value].includes(searchText.value)
-  )
+  todos.value.filter((todo) => todo[category.value.value].includes(text.value))
 );
 const editingTodo = ref(null);
 const selectEditTodo = (todo) => {
@@ -31,7 +30,7 @@ const closeUpdateTodoForm = () => {
 <template>
   <div class="search-box">
     <TodoCategory />
-    <SearchTodoInput v-model="searchText" />
+    <CustomInput v-model="text" placeholder="검색어를 입력해주세요." />
   </div>
   <AddTodoButton />
   <ul>

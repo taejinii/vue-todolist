@@ -4,6 +4,7 @@ import { ko } from "date-fns/locale";
 import useTodos from "../../hooks/useTodos";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import TodoStatusMenu from "./TodoStatusMenu.vue";
+import CustomInput from "./CustomInput.vue";
 
 const isInputModeVisible = ref(false);
 const selectedStatus = ref(null);
@@ -41,17 +42,10 @@ const handleAddTodo = (status) => {
     v-show="isInputModeVisible"
     class="input-mode"
   >
-    <input
-      class="todo-input"
-      v-model="newTodo.title"
-      placeholder="제목을 입력해주세요."
-      required
-    />
-    <input
-      class="todo-input"
+    <CustomInput v-model="newTodo.title" placeholder="제목을 입력해주세요." />
+    <CustomInput
       v-model="newTodo.description"
       placeholder="설명을 입력해주세요."
-      required
     />
     <div class="input-mode-options">
       <div class="input-box">
@@ -101,14 +95,6 @@ const handleAddTodo = (status) => {
   justify-content: center;
   gap: 20px;
   padding: 15px;
-}
-.todo-input {
-  border-radius: 4px;
-  border: none;
-  padding: 10px;
-  &:focus {
-    outline: none;
-  }
 }
 .input-mode-options {
   display: flex;
