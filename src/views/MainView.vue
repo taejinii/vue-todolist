@@ -1,13 +1,11 @@
 <script setup>
 import { computed, ref } from "vue";
-import SearchTodoInput from "../components/main/SearchTodoInput.vue";
 import CustomInput from "../components/main/CustomInput.vue";
 import TodoCategory from "../components/main/TodoCategory.vue";
 import AddTodoButton from "../components/main/AddTodoButton.vue";
-import TodoItem from "../components/main/TodoItem.vue";
 import useTodos from "../hooks/useTodos";
 import store from "../store";
-import UpdateTodoForm from "../components/main/UpdateTodoForm.vue";
+import TodoList from "../components/main/TodoList.vue";
 
 // 전체 TODO 목록을 가져옵니다.
 const { todos } = useTodos();
@@ -18,13 +16,6 @@ const category = computed(() => store.state["category"]);
 const filteredTodos = computed(() =>
   todos.value.filter((todo) => todo[category.value.value].includes(text.value))
 );
-const editingTodo = ref(null);
-const selectEditTodo = (todo) => {
-  editingTodo.value = todo;
-};
-const closeUpdateTodoForm = () => {
-  editingTodo.value = null;
-};
 </script>
 
 <template>
@@ -33,19 +24,7 @@ const closeUpdateTodoForm = () => {
     <CustomInput v-model="text" placeholder="검색어를 입력해주세요." />
   </div>
   <AddTodoButton />
-  <ul>
-    <li v-for="todo in filteredTodos">
-      <TodoItem
-        v-if="editingTodo !== todo"
-        :key="todo.id"
-        :todo="todo"
-        @click="selectEditTodo(todo)"
-      />
-      <div v-else>
-        <UpdateTodoForm :todo="todo" @closeForm="closeUpdateTodoForm" />
-      </div>
-    </li>
-  </ul>
+  <TodoList :todos="filteredTodos" />
 </template>
 
 <style scoped>
@@ -54,12 +33,5 @@ const closeUpdateTodoForm = () => {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-}
-ul {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  overflow-y: auto;
-  flex: 1;
 }
 </style>

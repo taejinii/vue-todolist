@@ -53,7 +53,7 @@ const handleUpdateTodo = () => {
           format="yyyy.MM.dd"
           teleport="body"
         />
-        <div class="">
+        <div>
           <button type="submit">수정</button>
           <button type="button" @click="onDeleteTodo(id)">삭제</button>
         </div>
