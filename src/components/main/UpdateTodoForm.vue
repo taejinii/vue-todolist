@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { ko } from "date-fns/locale";
+import dayjs from "dayjs";
 import useTodos from "../../hooks/useTodos";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -28,7 +29,7 @@ const handleUpdateTodo = () => {
     id,
     title: updateTitle.value,
     description: updateDescription.value,
-    date: updateDate.value,
+    date: dayjs(updateDate.value).format("YYYY.MM.DD"),
     status: updateStatus.value,
   });
 };
